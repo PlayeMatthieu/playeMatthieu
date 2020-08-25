@@ -1,16 +1,18 @@
-### Hi there 👋
+![Design & Development](https://github.com/PlayeMatthieu/playeMatthieu/blob/master/Github%20Banner.png?raw=true)
 
-<!--
-**PlayeMatthieu/playeMatthieu** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+# Hi there 👋, I'm Matthieu Playe
+I'am Matthieu from Belgium. Full time working in a roofing company and student by night in Howest Brugge. I enjoy learning new languages to get better at programming. I also enjoy wireframing, ui, ux and design in general.
 
-Here are some ideas to get you started:
+## Skills and Experience
+* 💜 C#
+* 💻 HTML, CSS, JS
+* 🌈 SASS
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+### Frameworks I love to use
+* Bulma.io
+* VueJs
+
+## Socials
+
+[<img src='https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/github.svg' alt='github' height='40'>](https://github.com/https://github.com/PlayeMatthieu)  [<img src='https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/instagram.svg' alt='instagram' height='40'>](https://www.instagram.com/https://www.instagram.com/matthieuplaye//)  [<img src='https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/icloud.svg' alt='website' height='40'>](http://playe.be/)  
+
