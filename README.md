@@ -9,10 +9,13 @@ I'am Matthieu from Belgium. Full time working in a roofing company and student b
 * 🌈 SASS
 
 ### Frameworks I love to use
-* Bulma.io
+* Angular Material
 
 ### Frameworks I learn
-* VueJs
+* Angular
+* Typescript
+* NodeJs
+* Express
 
 ## Socials
 
