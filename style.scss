@@ -157,7 +157,7 @@ footer {
 
     main {
         padding: auto;
-        max-width: 500px;
+        max-width: 650px;
         .hero {
             gap: 32px;
 
@@ -189,12 +189,12 @@ footer {
 @media only screen and (min-width: 768px) {
     .circle-top {
         right: 0;
-        height: 600px;
+        height: 350px;
     }
 
     .Circle-left {
         top: 150px;
-        height: 800px;
+        height: 780px;
     }
 
     main {
@@ -216,6 +216,17 @@ footer {
 
 // Large desktop
 @media only screen and (min-width: 1200px) {
+
+    .circle-top {
+        right: 0;
+        height: 500px;
+    }
+
+    .Circle-left {
+        top: 150px;
+        height: 850px;
+    }
+
     main {
         max-width: 1100px;
     }
