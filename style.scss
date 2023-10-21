@@ -1,0 +1,192 @@
+// Global
+
+* {
+    font-family: 'ubuntu', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    min-height: 100vh;
+    padding-bottom: 116px;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+h1 {
+    font-weight: bold;
+}
+
+h2 {
+    font-weight: bold;
+}
+
+.socials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    font-size: 24px;
+}
+
+.brand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+
+    img {
+        width: 32px;
+        height: 32px;
+    }
+
+    p {
+        font-weight: 600;
+    }
+}
+
+
+.circle-top {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 250px;
+    z-index: -1;
+}
+
+.Circle-left {
+    position: absolute;
+    left: 0px;
+    top: 300px;
+    height: 300px;
+    z-index: -1;
+}
+
+// Mobile
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+}
+
+main {
+    padding: 16px;
+    .hero {
+        margin-top: 15vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+        h1 {
+            max-width: 350px;
+            font-size: 26px;
+        }
+        p {
+            max-width: 300px;
+            font-weight: 400;
+            font-style: normal;
+        }
+    }
+
+    .projects {
+    margin-top: 15vh;
+        .project {
+            background-color:#C9EEFF;
+            border-radius: 8px;
+            min-height: 450px;
+            padding: 8px;
+        }
+    }
+
+}
+
+
+footer {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    background-color: #f6f6f6;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin-top: 32px;
+}
+
+
+// Tablet
+@media only screen and (min-width: 600px) {
+
+    body {
+        padding-bottom: 64px;
+    }
+
+    .circle-top {
+        right: 0;
+        height: 450px;
+    }
+    
+    .Circle-left {
+        top: 250px;
+        height: 500px;
+    }
+
+    main {
+        .hero {
+            gap: 32px;
+            h1 {
+                font-size: 48px;
+                max-width: 650px;
+            }
+            p {
+                max-width: 400px;
+            }
+        }
+    }
+
+    footer {
+        flex-direction: row;
+        justify-content: space-between ;
+    }
+}
+
+// Desktop
+@media only screen and (min-width: 768px) {
+    .circle-top {
+        right: 0;
+        height: 600px;
+    }
+    
+    .Circle-left {
+        top: 150px;
+        height: 800px;
+    }
+
+    main {
+        .hero {
+            gap: 32px;
+            h1 {
+                font-size: 64px;
+                max-width: 850px;
+            }
+            p {
+                max-width: 400px;
+            }
+        }
+    }
+}
+
+// Large desktop
+@media only screen and (min-width: 1200px) {
+    
+}

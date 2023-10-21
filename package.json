@@ -1,0 +1,25 @@
+{
+  "name": "playematthieu",
+  "version": "1.0.0",
+  "description": "portfolio website",
+  "main": "main.js",
+  "scripts": {
+    "watch": "sass --watch style.scss style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PlayeMatthieu/playeMatthieu.git"
+  },
+  "keywords": [
+    "portfolio",
+    "html",
+    "css",
+    "javascript"
+  ],
+  "author": "Matthieu Playe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PlayeMatthieu/playeMatthieu/issues"
+  },
+  "homepage": "https://github.com/PlayeMatthieu/playeMatthieu#readme"
+}
