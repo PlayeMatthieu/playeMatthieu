@@ -77,6 +77,7 @@ header nav {
 
 main {
     padding: 16px;
+    margin: auto;
     .hero {
         margin-top: 15vh;
         display: flex;
@@ -85,10 +86,12 @@ main {
         flex-direction: column;
         text-align: center;
         gap: 16px;
+
         h1 {
             max-width: 350px;
             font-size: 26px;
         }
+
         p {
             max-width: 300px;
             font-weight: 400;
@@ -97,12 +100,23 @@ main {
     }
 
     .projects {
-    margin-top: 15vh;
+        margin-top: 15vh;
+
         .project {
-            background-color:#C9EEFF;
-            border-radius: 8px;
-            min-height: 450px;
-            padding: 8px;
+            .project-image-container {
+                background-color: #C9EEFF;
+                border-radius: 8px;
+                height: auto;
+                padding: 32px 16px 0 16px;
+                display: flex;
+                justify-content: flex-end;
+                margin-bottom: 16px;
+            }
+
+            img {
+                width: 100%;
+                height: auto;
+            }
         }
     }
 
@@ -135,28 +149,39 @@ footer {
         right: 0;
         height: 450px;
     }
-    
+
     .Circle-left {
         top: 250px;
         height: 500px;
     }
 
     main {
+        padding: auto;
+        max-width: 500px;
         .hero {
             gap: 32px;
+
             h1 {
                 font-size: 48px;
                 max-width: 650px;
             }
+
             p {
                 max-width: 400px;
             }
         }
+
+        .projects .project {
+            .project-image-container {
+                padding: 64px 32px 0 32px;
+            }
+        }
+
     }
 
     footer {
         flex-direction: row;
-        justify-content: space-between ;
+        justify-content: space-between;
     }
 }
 
@@ -166,19 +191,22 @@ footer {
         right: 0;
         height: 600px;
     }
-    
+
     .Circle-left {
         top: 150px;
         height: 800px;
     }
 
     main {
+        max-width: 700px;
         .hero {
             gap: 32px;
+
             h1 {
                 font-size: 64px;
                 max-width: 850px;
             }
+
             p {
                 max-width: 400px;
             }
@@ -188,5 +216,7 @@ footer {
 
 // Large desktop
 @media only screen and (min-width: 1200px) {
-    
+    main {
+        max-width: 1100px;
+    }
 }

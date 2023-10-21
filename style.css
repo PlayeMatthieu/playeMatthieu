@@ -71,6 +71,7 @@ header nav {
 
 main {
   padding: 16px;
+  margin: auto;
 }
 main .hero {
   margin-top: 15vh;
@@ -93,11 +94,18 @@ main .hero p {
 main .projects {
   margin-top: 15vh;
 }
-main .projects .project {
+main .projects .project .project-image-container {
   background-color: #C9EEFF;
   border-radius: 8px;
-  min-height: 450px;
-  padding: 8px;
+  height: auto;
+  padding: 32px 16px 0 16px;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+main .projects .project img {
+  width: 100%;
+  height: auto;
 }
 
 footer {
@@ -126,6 +134,10 @@ footer {
     top: 250px;
     height: 500px;
   }
+  main {
+    padding: auto;
+    max-width: 500px;
+  }
   main .hero {
     gap: 32px;
   }
@@ -135,6 +147,9 @@ footer {
   }
   main .hero p {
     max-width: 400px;
+  }
+  main .projects .project .project-image-container {
+    padding: 64px 32px 0 32px;
   }
   footer {
     flex-direction: row;
@@ -150,6 +165,9 @@ footer {
     top: 150px;
     height: 800px;
   }
+  main {
+    max-width: 700px;
+  }
   main .hero {
     gap: 32px;
   }
@@ -159,6 +177,11 @@ footer {
   }
   main .hero p {
     max-width: 400px;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  main {
+    max-width: 1100px;
   }
 }
 
