@@ -110,12 +110,19 @@ main {
                 padding: 32px 16px 0 16px;
                 display: flex;
                 justify-content: flex-end;
-                margin-bottom: 16px;
             }
 
             img {
                 width: 100%;
                 height: auto;
+            }
+
+            .project-description {
+                padding: 16px 0;
+                .project-title {
+                    font-size: 18px;
+                    font-weight: bold;
+                }
             }
         }
     }
