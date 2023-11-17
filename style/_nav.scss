@@ -1,0 +1,17 @@
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-m);
+  padding: var(--spacing-l);
+
+  .links {
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing-m);
+    justify-content: flex-end;
+    align-items: center;
+    text-transform: uppercase;
+  }
+}

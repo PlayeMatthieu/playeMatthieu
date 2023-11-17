@@ -1,0 +1,15 @@
+.about {
+  background-color: #3A3838;
+  padding: var(--spacing-xl) var(--spacing-m);
+  text-align: center;
+  color: var(--text-color-light);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-m);
+
+  p {
+    text-align: left;
+  }
+}
