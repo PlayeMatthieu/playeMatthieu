@@ -1,0 +1,19 @@
+{
+  "name": "portfolio-cdk-stack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cdkDeploy": "npx aws-cdk deploy --outputs-file deploy-output.json --require-approval never"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^20.9.2",
+    "aws-cdk": "^2.110.0",
+    "aws-cdk-lib": "^2.110.0",
+    "esbuild": "^0.19.6",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}

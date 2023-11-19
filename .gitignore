@@ -1,0 +1,20 @@
+# Node artifacts files
+node_modules/
+dist/
+
+# build files from cdk
+infrastructure/cdk.out/
+infrastructure/cdk.out/manifest.json
+infrastructure/cdk.out/tree.json
+
+# Jetbrains Ide & Vscode
+.idea/
+.vscode/
+
+# OS generated files
+.DS_Store
+
+# Windows generated files
+Thumbs.db
+
+#Local env files
