@@ -1,0 +1,70 @@
+// Mobile
+.experience {
+  position: relative;
+  padding: var(--spacing-xxl) var(--spacing-l);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: var(--spacing-xxl);
+
+  .experience-circles {
+    position: absolute;
+    bottom: -125px;
+    left: -50px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    z-index: -1;
+  }
+
+  h5 {
+    color: var(--experience-text-color);
+  }
+
+  .experience-container, .education-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-m);
+  }
+
+
+  .skills-container {
+    .skills-list {
+      padding-top: var(--spacing-xl);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--spacing-l);
+      width: 100%;
+
+      .skill {
+        width: 25%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        gap: var(--spacing-m);
+        text-transform: uppercase;
+
+        img {
+          max-width: 100%;
+          height: auto;
+          object-fit: contain;
+          filter: grayscale(100%);
+        }
+
+        h6 {
+          font-weight: 500;
+          text-transform: uppercase;
+          color: var(--experience-text-color);
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}

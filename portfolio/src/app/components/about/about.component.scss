@@ -1,0 +1,15 @@
+// Mobile
+.about {
+  padding: var(--spacing-xxl) var(--spacing-l);
+  background-color: var(--bg-color-dark);
+  color: var(--text-color-light);
+
+  .about-text {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    gap: var(--spacing-s);
+    margin-top: 48px;
+  }
+}

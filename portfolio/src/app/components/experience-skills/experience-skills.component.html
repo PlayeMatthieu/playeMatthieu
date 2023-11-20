@@ -1,0 +1,24 @@
+<section class="experience">
+  <img class="experience-circles" src="assets/images/Circels.svg" alt="Circles">
+  <h2>Experience & skills</h2>
+  <div class="education-container">
+    <h4>Education</h4>
+    <h5>Bachelor in Wood Technologie</h5>
+    <h5>Software developer graduate</h5>
+  </div>
+  <div class="experience-container">
+    <h4>Experience</h4>
+    <h5>De Torre</h5>
+    <h5>Visma Bouwsoft</h5>
+    <h5>Buildmate</h5>
+  </div>
+  <div class="skills-container">
+    <h4>My skills</h4>
+    <div class="skills-list">
+      <div class="skill" *ngFor="let skill of skills">
+        <img [src]="skill.image" [alt]="skill.title">
+        <h6>{{skill.title}}</h6>
+      </div>
+    </div>
+  </div>
+</section>

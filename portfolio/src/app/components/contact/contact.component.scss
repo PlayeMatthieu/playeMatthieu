@@ -1,0 +1,23 @@
+.contact {
+  padding: var(--spacing-xxl) var(--spacing-l);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .contact-links {
+    display: flex;
+    gap: var(--spacing-m);
+    justify-content: center;
+    align-items: center;
+    max-width: 325px;
+    padding: var(--spacing-xxl) 0;
+
+    a {
+      font-size: 20px;
+      text-decoration: none;
+      color: var(--text-color);
+    }
+
+  }
+}
