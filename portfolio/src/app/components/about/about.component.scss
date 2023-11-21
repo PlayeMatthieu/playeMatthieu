@@ -13,3 +13,14 @@
     margin-top: 48px;
   }
 }
+
+@media (min-width: 768px) {
+  .about {
+    .about-text {
+      text-align: left;
+      align-items: flex-start;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+  }
+}

@@ -7,6 +7,8 @@
   flex-direction: column;
   gap: var(--spacing-xxl);
   position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
 
   .hero-circles {
     position: absolute;
@@ -39,26 +41,68 @@
   }
 }
 
-// Tablet
-//@include breakpoint(tablet) {
-//  .hero {
-//  }
-//}
-//
-//// Desktop
-//@include breakpoint(desktop) {
-//  .hero {
-//  }
-//}
-//
-//// Widescreen
-//@include breakpoint(widescreen) {
-//  .hero {
-//  }
-//}
-//
-//// Ultra wide
-//@include breakpoint(ultraWide) {
-//  .hero {
-//  }
-//}
+// Tablet and landscape
+@media (min-width: 768px) and (orientation: landscape) {
+  .hero {
+    flex-direction: row;
+    gap: var(--spacing-s);
+    align-items: flex-start;
+
+    .hero-circles {
+      left: 150px;
+      bottom: -50px;
+    }
+
+    .hero-text {
+      overflow-wrap: break-word;
+      margin-top: var(--spacing-xl);
+      max-width: 350px;
+    }
+
+    img {
+      max-width: 400px;
+    }
+  }
+}
+
+// Tablet and portrait
+@media (min-width: 768px) and (orientation: portrait) {
+  .hero {
+    flex-direction: row;
+    gap: var(--spacing-m);
+
+    .hero-circles {
+      left: 0;
+      bottom: 0;
+    }
+
+    .hero-text {
+      margin-top: var(--spacing-xl);
+      max-width: 350px;
+    }
+
+    img {
+      max-width: 400px;
+    }
+  }
+}
+
+// Desktop
+@media (min-width: 1024px) {
+  .hero {
+    flex-direction: row;
+    .hero-circles {
+      left: 200px;
+      bottom: -100px;
+    }
+
+    .hero-text {
+      margin-top: var(--spacing-xxl);
+      max-width: 400px;
+    }
+
+    img {
+      max-width: 450px;
+    }
+  }
+}

@@ -19,6 +19,14 @@
     z-index: -1;
   }
 
+  .experience-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: var(--spacing-xxl);
+  }
+
   h5 {
     color: var(--experience-text-color);
   }
@@ -65,6 +73,31 @@
           font-size: 16px;
         }
       }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .experience {
+    .experience-circles {
+      bottom: -250px;
+      right: 0;
+      max-width: 800px;
+      height: auto;
+    }
+
+    .experience-content {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .education-container, .experience-container {
+      grid-column: span 1;
+      align-self: start;
+    }
+
+    .skills-container {
+      grid-column: span 2;
     }
   }
 }
