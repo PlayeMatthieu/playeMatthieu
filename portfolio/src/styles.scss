@@ -1,14 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
 @import "styles/variables";
 @import "styles/colors";
 @import "styles/mixins";
 @import "styles/typography";
+@import "styles/buttons";
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 body {

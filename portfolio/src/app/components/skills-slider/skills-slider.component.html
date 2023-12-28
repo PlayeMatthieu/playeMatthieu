@@ -1,0 +1,10 @@
+<section class="skills-slider">
+  <div class="scroller" #scroller>
+    <ul class="skills-list scroller__inner" #innerScroller>
+      <div class="skill" *ngFor="let skill of skills">
+        <img [src]="skill.image" [alt]="skill.title">
+        <p>{{skill.title}}</p>
+      </div>
+    </ul>
+  </div>
+</section>

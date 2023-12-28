@@ -1,0 +1,30 @@
+.button {
+  text-align: center;
+  padding: var(--spacing-8) var(--spacing-16);
+  border-radius: 50px;
+  color: var(--text-color);
+  background-color: transparent;
+  outline: 1px solid var(--text-color);
+
+  &:hover {
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-light);
+  }
+}
+
+.filled {
+  background-color: var(--bg-color-dark);
+  color: var(--text-color-light);
+
+  &:hover {
+    background-color: var(--bg-color-light);
+    color: var(--text-color);
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-16);
+}

@@ -23,6 +23,6 @@ export class ProjectsComponent {
     description: 'Web & mobile application',
     image: 'assets/images/Buildmate_app.png',
     link: 'https://buildmate.be',
-    color: '#D9D9D9'
+    color: '#EFF3F8'
   }]
 }
