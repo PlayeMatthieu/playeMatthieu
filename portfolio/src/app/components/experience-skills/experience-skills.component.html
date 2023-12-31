@@ -1,26 +1,33 @@
-<section class="experience">
-  <img class="experience-circles" src="assets/images/Circels.svg" alt="Circles">
+<section class="experience" id="experience">
   <h2>Experience & skills</h2>
-  <div class="experience-content">
-      <div class="education-container">
-        <h4>Education</h4>
-        <h5>Bachelor in Wood Technologie</h5>
-        <h5>Software developer graduate</h5>
-      </div>
-      <div class="experience-container">
-        <h4>Experience</h4>
-        <h5>De Torre</h5>
-        <h5>Visma Bouwsoft</h5>
-        <h5>Buildmate</h5>
-      </div>
+  <div class="experience-grid">
+    <div class="left-grid">
+        <h3>Education</h3>
+        <ul>
+          <li>Bachelor in wood technology</li>
+          <li>Software developer graduate</li>
+        </ul>
+        <h3>Experience</h3>
+        <ul>
+          <li>De Torre</li>
+          <li>Visma Bouwsoft</li>
+          <li>Buildmate</li>
+        </ul>
+    </div>
+    <div class="right-grid">
       <div class="skills-container">
-        <h4>My skills</h4>
-        <div class="skills-list">
-          <div class="skill" *ngFor="let skill of skills">
-            <img [src]="skill.image" [alt]="skill.title">
-            <h6>{{skill.title}}</h6>
-          </div>
-        </div>
+        <span class="html">HTML</span>
+        <span class="typescript">Typescript</span>
+        <span class="sass">SASS</span>
+        <span class="aws">AWS</span>
+        <span class="javascript">Javascript</span>
+        <span class="figma">Figma</span>
+        <span class="css">CSS</span>
+        <span class="angular">Angular</span>
+        <span class="sql">SQL</span>
+        <span class="ejs">EJS</span>
+        <span class="webstorm">Webstorm</span>
       </div>
+    </div>
   </div>
 </section>

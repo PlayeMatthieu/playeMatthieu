@@ -1,4 +1,4 @@
-<section class="services">
+<section class="services" id="services">
   <h2>Services</h2>
   <div class="services-items">
     @for (service of services; track service.name) {
@@ -6,7 +6,7 @@
         <div class="service-item-icon">
           <img [src]="'assets/images/icons/' + service.icon" alt="service icon" />
         </div>
-        <h4 class="service-item-title">{{service.name}}</h4>
+        <h4>{{service.name}}</h4>
       </div>
     }
   </div>

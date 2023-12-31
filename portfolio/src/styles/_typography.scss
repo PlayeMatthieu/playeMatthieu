@@ -26,6 +26,13 @@ a {
   color: var(--text-color);
 }
 
+li {
+  font-size: 16px;
+  text-decoration: none;
+  list-style-type: none;
+  padding: var(--spacing-8) 0;
+}
+
 @media (min-width: 1024px) {
   h1 {
     font-size: 64px;

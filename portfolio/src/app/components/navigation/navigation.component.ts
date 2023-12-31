@@ -1,19 +1,26 @@
-import { Component } from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-navigation',
   standalone: true,
-  imports: [CommonModule],
   templateUrl: './navigation.component.html',
-  styleUrl: './navigation.component.scss'
+  styleUrl: './navigation.component.scss',
+  imports: [CommonModule]
 })
 export class NavigationComponent {
 
-  public links = [
-    {name: 'about'},
-    {name: 'projects'},
-    
-  ]
+  navOpen: boolean = false;
 
+  @HostListener('window:scroll', ['$event'])
+  onScroll() {
+    // Check if scroll is greater than 100px
+    if (window.scrollY > 100 && this.navOpen) {
+      this.navOpen = false;
+    }
+  }
+
+  toggleNav() {
+    this.navOpen = !this.navOpen;
+  }
 }

@@ -1,3 +1,35 @@
+// Mobile
 footer {
   padding: var(--spacing-16);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .socials {
+    display: flex;
+    gap: var(--spacing-16);
+    margin-top: var(--spacing-16);
+
+    a {
+      color: var(--text-color-light);
+      font-size: 24px;
+    }
+
+    img {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  footer {
+    padding: var(--spacing-32) var(--spacing-64);
+    flex-direction: row;
+    justify-content: space-between;
+
+    .socials {
+      margin-top: 0;
+    }
+  }
 }

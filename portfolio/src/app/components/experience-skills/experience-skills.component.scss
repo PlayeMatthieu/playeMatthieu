@@ -1,76 +1,42 @@
 // Mobile
 .experience {
-  position: relative;
-  padding: var(--spacing-xxl) var(--spacing-l);
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: var(--spacing-xxl);
+  background-color: var(--bg-color-dark);
+  padding: var(--spacing-64) var(--spacing-32);
 
-  .experience-circles {
-    position: absolute;
-    bottom: -125px;
-    left: -50px;
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    z-index: -1;
+  h2, h3, li {
+    color: var(--text-color-light);
   }
 
-  .experience-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: var(--spacing-xxl);
-  }
-
-  h5 {
-    color: var(--experience-text-color);
-  }
-
-  .experience-container, .education-container {
+  .experience-grid {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: var(--spacing-m);
-  }
+    gap: var(--spacing-32);
+    margin-top: var(--spacing-32);
 
-
-  .skills-container {
-    .skills-list {
-      padding-top: var(--spacing-xl);
+    .left-grid {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: var(--spacing-l);
+      align-items: flex-start;
+      flex-direction: column;
+      gap: var(--spacing-16);
       width: 100%;
+    }
 
-      .skill {
-        width: 25%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-direction: column;
-        gap: var(--spacing-m);
-        text-transform: uppercase;
+    .right-grid {
+      .skills-container {
+        position: relative;
+        border: 1px solid #303030;
+        padding: var(--spacing-16);
+        height: 100%;
+        width: 100%;
+        min-height: 300px;
 
-        img {
-          max-width: 100%;
-          height: auto;
-          object-fit: contain;
-          filter: grayscale(100%);
-        }
-
-        h6 {
-          font-weight: 500;
-          text-transform: uppercase;
-          color: var(--experience-text-color);
-          font-size: 16px;
+        span {
+          position: absolute;
+          padding: var(--spacing-8) var(--spacing-16);
+          background-color: var(--bg-color-dark);
+          border: 1px solid #303030;
+          color: var(--text-color-light);
+          border-radius: 50px;
         }
       }
     }
@@ -79,25 +45,81 @@
 
 @media (min-width: 768px) {
   .experience {
-    .experience-circles {
-      bottom: -250px;
-      right: 0;
-      max-width: 800px;
-      height: auto;
-    }
+    padding: var(--spacing-128) var(--spacing-64);
 
-    .experience-content {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-    }
+    .experience-grid {
+      flex-direction: row;
+      gap: var(--spacing-64);
+      margin-top: var(--spacing-64);
 
-    .education-container, .experience-container {
-      grid-column: span 1;
-      align-self: start;
-    }
-
-    .skills-container {
-      grid-column: span 2;
+      .right-grid {
+        .skills-container {
+          min-width: 400px;
+        }
+      }
     }
   }
+}
+
+// skills positions
+
+.html {
+  top: var(--spacing-16);
+  left: var(--spacing-16);
+  transform: rotate(5deg);
+}
+
+.css {
+  top: 32%;
+  left: 62%;
+  transform: rotate(15deg);
+}
+
+.javascript {
+  top: 65%;
+  left: var(--spacing-16);
+  transform:rotate(10deg);
+}
+
+.typescript {
+  top: 70%;
+  left: 52%;
+  transform: rotate(-17.5deg);
+}
+
+.figma {
+  top: var(--spacing-16);
+  right: var(--spacing-16);
+  transform: rotate(13deg);
+}
+
+.aws {
+  top: 50%;
+  right: var(--spacing-16);
+}
+
+.sass {
+  top: 50%;
+  right: 50%;
+}
+
+.angular {
+  bottom: var(--spacing-16);
+  right: var(--spacing-16);
+}
+
+.sql {
+  bottom: var(--spacing-16);
+  left: var(--spacing-16);
+}
+
+.ejs {
+  bottom: 70%;
+  left: 40%;
+  transform: rotate(-17.5deg);
+}
+
+.webstorm {
+  bottom: 50%;
+  left: var(--spacing-16);
 }
