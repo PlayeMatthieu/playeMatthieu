@@ -4,6 +4,12 @@
   align-items: center;
   gap: var(--spacing-16);
   justify-content: center;
+
+  img {
+    max-width: 64px;
+    max-height: 64px;
+  }
+
   p {
     text-transform: uppercase;
     color: #5B5B5B;

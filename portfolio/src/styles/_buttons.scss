@@ -5,6 +5,7 @@
   color: var(--text-color);
   background-color: transparent;
   outline: 1px solid var(--text-color);
+  transition: background-color .3s ease-in-out, color .3s ease-in-out;
 
   &:hover {
     background-color: var(--bg-color-dark);
