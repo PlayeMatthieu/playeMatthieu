@@ -1,126 +1,111 @@
-import * as cdk from "aws-cdk-lib";
-import {Stack, StackProps} from "aws-cdk-lib";
+import {CfnOutput, Duration, RemovalPolicy, Stack, StackProps} from "aws-cdk-lib";
 import {Construct} from "constructs";
 import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
 import * as s3 from 'aws-cdk-lib/aws-s3';
+import {BlockPublicAccess, BucketAccessControl} from 'aws-cdk-lib/aws-s3';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import * as route53 from 'aws-cdk-lib/aws-route53';
 import * as acm from 'aws-cdk-lib/aws-certificatemanager';
 import {S3Origin} from 'aws-cdk-lib/aws-cloudfront-origins'
-import {CloudFrontTarget} from "aws-cdk-lib/aws-route53-targets";
+import * as targets from "aws-cdk-lib/aws-route53-targets";
 import * as s3deploy from 'aws-cdk-lib/aws-s3-deployment';
-import {environment} from "../../../shared/environment/environment";
 
 export class CdkDistribution extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
+    const domainName = 'playe.be';
+    const siteDomain = 'www' + '.' + domainName;
+
     // Create an identity to be used for allowing the distribution to access the bucket
-    const identity = new cloudfront.OriginAccessIdentity(this, environment.productName + '.Cloudfront-OAI', {
+    const identity = new cloudfront.OriginAccessIdentity(this, 'Cloudfront-OAI', {
       comment: 'OAI for Cloudfront distribution'
     });
 
-    // Create distribution
-    const distributionBucket = this.createDistributionBucket("distribution", identity);
+    const zone = route53.HostedZone.fromLookup(this, 'Zone', {domainName: domainName});
+    console.log(zone)
 
-    // Create distribution
-    this.createDistribution("playe.be", identity, distributionBucket);
+    const certificate = new acm.DnsValidatedCertificate(this, 'SiteCertificate', {
+      domainName: domainName,
+      subjectAlternativeNames: ['*.' + domainName],
+      hostedZone: zone,
+      region: 'us-east-1', // Cloudfront only checks this region for certificates
+    });
 
-  }
+    certificate.applyRemovalPolicy(RemovalPolicy.DESTROY)
 
-  createDistributionBucket(name: string, cloudfrontOAI: cloudfront.OriginAccessIdentity): s3.Bucket {
-    // Content bucket for our site, no public access
-    const distributionBucket = new s3.Bucket(this, environment.productName + "." + name, {
-      bucketName: environment.productName + "." + name,
+    new CfnOutput(this, 'Certificate', {value: certificate.certificateArn});
+
+// S3 bucket
+    const siteBucket = new s3.Bucket(this, 'SiteBucket', {
+      bucketName: siteDomain,
       publicReadAccess: false,
-      blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
-
-      /**
-       * The default removal policy is RETAIN, which means that cdk destroy will not attempt to delete
-       * the new bucket, and it will remain in your account until manually deleted. By setting the policy to
-       * DESTROY, cdk destroy will attempt to delete the bucket, but will error if the bucket is not empty.
-       */
-      removalPolicy: cdk.RemovalPolicy.DESTROY,
-
-      /**
-       * For sample purposes only, if you create an S3 bucket then populate it, stack destruction fails.  This
-       * setting will enable full cleanup .
-       */
-      autoDeleteObjects: true
+      removalPolicy: RemovalPolicy.DESTROY,
+      autoDeleteObjects: true,
+      blockPublicAccess: BlockPublicAccess.BLOCK_ACLS,
+      accessControl: BucketAccessControl.BUCKET_OWNER_FULL_CONTROL,
+      websiteIndexDocument: 'index.html',
+      websiteErrorDocument: 'index.html'
     });
 
     // Grant access to cloudfront
-    distributionBucket.addToResourcePolicy(new iam.PolicyStatement({
+    siteBucket.addToResourcePolicy(new iam.PolicyStatement({
       actions: ['s3:GetObject'],
-      resources: [distributionBucket.arnForObjects('*')],
-      principals: [new iam.CanonicalUserPrincipal(cloudfrontOAI.cloudFrontOriginAccessIdentityS3CanonicalUserId)]
+      resources: [siteBucket.arnForObjects('*')],
+      principals: [new iam.CanonicalUserPrincipal(identity.cloudFrontOriginAccessIdentityS3CanonicalUserId)]
     }));
 
-    new cdk.CfnOutput(this, "distribution", {value: distributionBucket.bucketName});
-    return distributionBucket;
-  }
+    new CfnOutput(this, 'Bucket', {value: siteBucket.bucketName});
 
-  createDistribution(domain: string, cloudfrontOAI: cloudfront.OriginAccessIdentity, bucket: cdk.aws_s3.Bucket): string {
-    // get the DNS zone for the domain
-    const zone = route53.HostedZone.fromLookup(this, 'Zone', {domainName: domain});
-    const siteDomain = domain;
-
-    // TLS certificate
-    const certificate = new acm.DnsValidatedCertificate(this, environment.productName + 'SiteCertificate', {
-      domainName: siteDomain,
-      hostedZone: zone,
-      region: 'us-east-1', // Cloudfront needs 'us-east-1' for certificates.
-    });
-
-    // Wait until the new ACM certificate has been updated to have a region parameter
-    // const certificate = new acm.Certificate(this, 'SiteCertificate', {
-    //   domainName: siteDomain,
-    //   region: 'us-east-1', // this.region -> did not work Cloudfront needs 'us-east-1' for certificates.
-    //   validation: acm.CertificateValidation.fromDns(zone)
-    // });
-
-
-    new cdk.CfnOutput(this, 'certificate', {value: certificate.certificateArn});
-
-    // Make CloudFront distribution
-    const distribution = new cloudfront.Distribution(this, environment.productName + '.Distribution', {
+    // Cloudfront distribution that provides HTTPS
+    const distribution = new cloudfront.Distribution(this, 'SiteDistribution', {
       certificate: certificate,
       defaultRootObject: "index.html",
-      domainNames: [siteDomain],
+      domainNames: [siteDomain, domainName],
       minimumProtocolVersion: cloudfront.SecurityPolicyProtocol.TLS_V1_2_2021,
       errorResponses: [
-        {httpStatus: 400, responseHttpStatus: 200, responsePagePath: '/index.html'},
-        {httpStatus: 403, responseHttpStatus: 200, responsePagePath: '/index.html'},
-        {httpStatus: 404, responseHttpStatus: 200, responsePagePath: '/index.html'}
+        {
+          httpStatus: 400, responseHttpStatus: 200,
+          responsePagePath: '/index.html', ttl: Duration.minutes(30)
+        },
+        {
+          httpStatus: 403, responseHttpStatus: 200,
+          responsePagePath: '/index.html', ttl: Duration.minutes(30)
+        },
+        {
+          httpStatus: 404, responseHttpStatus: 200,
+          responsePagePath: '/index.html', ttl: Duration.minutes(30)
+        },
       ],
       defaultBehavior: {
-        origin: new S3Origin(bucket, {originAccessIdentity: cloudfrontOAI}),
+        origin: new S3Origin(siteBucket, {originAccessIdentity: identity}),
         compress: true,
         allowedMethods: cloudfront.AllowedMethods.ALLOW_GET_HEAD_OPTIONS,
         viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-        // responseHeadersPolicy: myResponseHeadersPolicy
-      },
+      }
     });
 
-    new cdk.CfnOutput(this, 'distributionId', {value: distribution.distributionId});
+    new CfnOutput(this, 'DistributionId', {value: distribution.distributionId});
 
-    // Route53 alias record for the CloudFront distribution
-    new route53.ARecord(this, environment.productName + '.SiteAliasRecord', {
+    // Create a record in Route53 for the CloudFront distribution
+    new route53.ARecord(this, 'WWWSiteAliasRecord', {
+      zone,
       recordName: siteDomain,
-      target: route53.RecordTarget.fromAlias(new CloudFrontTarget(distribution)),
-      zone: zone
+      target: route53.RecordTarget.fromAlias(new targets.CloudFrontTarget(distribution))
+    });
+    //5.2 Add an 'A' record to Route 53 for 'example.com'
+    new route53.ARecord(this, 'SiteAliasRecord', {
+      zone,
+      recordName: domainName,
+      target: route53.RecordTarget.fromAlias(new targets.CloudFrontTarget(distribution))
     });
 
     // Deploy site contents to S3 bucket
-    new s3deploy.BucketDeployment(this, environment.productName + '.DeployWithInvalidation', {
-      sources: [s3deploy.Source.asset("../portfolio/dist/")],
-      destinationBucket: bucket,
+    new s3deploy.BucketDeployment(this, 'DeployWebsite', {
+      sources: [s3deploy.Source.asset('../portfolio/dist/')],
+      destinationBucket: siteBucket,
       distribution,
-      distributionPaths: ['/*']
+      distributionPaths: ['/*'],
     });
-
-    let dsrv = 'https://' + siteDomain;
-    new cdk.CfnOutput(this, "website", {value: (dsrv[dsrv.length - 1] === "/") ? dsrv.slice(0, -1) : dsrv});
-    return dsrv;
   }
 }
