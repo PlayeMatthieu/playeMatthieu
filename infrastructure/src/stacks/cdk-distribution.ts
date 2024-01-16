@@ -66,10 +66,19 @@ export class CdkDistribution extends Stack {
     const siteDomain = domain;
 
     // TLS certificate
-    const certificate = new acm.Certificate(this, environment.productName + '.Certificate', {
+    const certificate = new acm.DnsValidatedCertificate(this, environment.productName + 'SiteCertificate', {
       domainName: siteDomain,
-      validation: acm.CertificateValidation.fromDns(zone),
+      hostedZone: zone,
+      region: 'us-east-1', // Cloudfront needs 'us-east-1' for certificates.
     });
+
+    // Wait until the new ACM certificate has been updated to have a region parameter
+    // const certificate = new acm.Certificate(this, 'SiteCertificate', {
+    //   domainName: siteDomain,
+    //   region: 'us-east-1', // this.region -> did not work Cloudfront needs 'us-east-1' for certificates.
+    //   validation: acm.CertificateValidation.fromDns(zone)
+    // });
+
 
     new cdk.CfnOutput(this, 'certificate', {value: certificate.certificateArn});
 
