@@ -1,8 +1,7 @@
-import {CfnOutput, Duration, RemovalPolicy, Stack, StackProps} from "aws-cdk-lib";
+import {CfnOutput, RemovalPolicy, Stack, StackProps} from "aws-cdk-lib";
 import {Construct} from "constructs";
 import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
 import * as s3 from 'aws-cdk-lib/aws-s3';
-import {BlockPublicAccess, BucketAccessControl} from 'aws-cdk-lib/aws-s3';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import * as route53 from 'aws-cdk-lib/aws-route53';
 import * as acm from 'aws-cdk-lib/aws-certificatemanager';
@@ -19,12 +18,13 @@ export class CdkDistribution extends Stack {
 
     // Create an identity to be used for allowing the distribution to access the bucket
     const identity = new cloudfront.OriginAccessIdentity(this, 'Cloudfront-OAI', {
-      comment: 'OAI for Cloudfront distribution'
+      comment: `OAI for ${domainName}`
     });
 
+    // Get the hosted zone for DNS records
     const zone = route53.HostedZone.fromLookup(this, 'Zone', {domainName: domainName});
-    console.log(zone)
 
+    // SSL certificate
     const certificate = new acm.DnsValidatedCertificate(this, 'SiteCertificate', {
       domainName: domainName,
       subjectAlternativeNames: ['*.' + domainName],
@@ -36,16 +36,13 @@ export class CdkDistribution extends Stack {
 
     new CfnOutput(this, 'Certificate', {value: certificate.certificateArn});
 
-// S3 bucket
+    // S3 bucket
     const siteBucket = new s3.Bucket(this, 'SiteBucket', {
       bucketName: siteDomain,
       publicReadAccess: false,
+      blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
       removalPolicy: RemovalPolicy.DESTROY,
       autoDeleteObjects: true,
-      blockPublicAccess: BlockPublicAccess.BLOCK_ACLS,
-      accessControl: BucketAccessControl.BUCKET_OWNER_FULL_CONTROL,
-      websiteIndexDocument: 'index.html',
-      websiteErrorDocument: 'index.html'
     });
 
     // Grant access to cloudfront
@@ -64,18 +61,9 @@ export class CdkDistribution extends Stack {
       domainNames: [siteDomain, domainName],
       minimumProtocolVersion: cloudfront.SecurityPolicyProtocol.TLS_V1_2_2021,
       errorResponses: [
-        {
-          httpStatus: 400, responseHttpStatus: 200,
-          responsePagePath: '/index.html', ttl: Duration.minutes(30)
-        },
-        {
-          httpStatus: 403, responseHttpStatus: 200,
-          responsePagePath: '/index.html', ttl: Duration.minutes(30)
-        },
-        {
-          httpStatus: 404, responseHttpStatus: 200,
-          responsePagePath: '/index.html', ttl: Duration.minutes(30)
-        },
+        {httpStatus: 400, responseHttpStatus: 200, responsePagePath: '/index.html'},
+        {httpStatus: 403, responseHttpStatus: 200, responsePagePath: '/index.html'},
+        {httpStatus: 404, responseHttpStatus: 200, responsePagePath: '/index.html'},
       ],
       defaultBehavior: {
         origin: new S3Origin(siteBucket, {originAccessIdentity: identity}),
@@ -102,7 +90,7 @@ export class CdkDistribution extends Stack {
 
     // Deploy site contents to S3 bucket
     new s3deploy.BucketDeployment(this, 'DeployWebsite', {
-      sources: [s3deploy.Source.asset('../portfolio/dist/')],
+      sources: [s3deploy.Source.asset('../portfolio/dist/browser/')],
       destinationBucket: siteBucket,
       distribution,
       distributionPaths: ['/*'],
