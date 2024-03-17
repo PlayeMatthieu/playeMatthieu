@@ -1,0 +1,27 @@
+h3 {
+  margin-top: var(--spacing-64);
+}
+
+.contact-grid {
+  margin-top: var(--spacing-32);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-32);
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+.contact-logo {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--spacing-8);
+  img {
+    width: 40px;
+    height: auto;
+  }
+}

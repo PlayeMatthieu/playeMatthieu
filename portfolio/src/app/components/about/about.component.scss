@@ -1,0 +1,16 @@
+h3 {
+  margin-top: var(--spacing-64);
+}
+
+.about-grid {
+  margin-top: var(--spacing-32);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-16);
+}
+
+.about-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-16);
+}

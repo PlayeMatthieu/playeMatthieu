@@ -1,0 +1,36 @@
+//Mobile
+.home-grid {
+  padding-top: var(--spacing-64);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-16);
+  position: relative;
+
+  .left-grid {
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-16);
+      align-items: center;
+    }
+  }
+}
+
+// Non Mobile
+@media (min-width: 768px) {
+  .home-grid {
+    padding-top: var(--spacing-128);
+    grid-template-columns: 1fr 2fr;
+
+    .left-grid {
+      padding-right: var(--spacing-16);
+      .content {
+        position: sticky;
+        top: var(--spacing-128);
+        gap: var(--spacing-32);
+        align-items: flex-start;
+      }
+    }
+  }
+}
+

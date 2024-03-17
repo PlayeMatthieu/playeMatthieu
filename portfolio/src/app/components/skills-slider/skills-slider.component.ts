@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 interface skill {
@@ -17,6 +17,7 @@ export class SkillsSliderComponent implements AfterViewInit{
 
   @ViewChild('scroller') scroller: ElementRef;
   @ViewChild('innerScroller') innerScroller: ElementRef;
+  @Input() maxWidth: number;
 
   public skills: skill[] = [{
     title: 'angular',

@@ -2,7 +2,6 @@
 @import "styles/variables";
 @import "styles/colors";
 @import "styles/typography";
-@import "styles/buttons";
 @import "styles/responsive";
 
 * {
@@ -15,3 +14,73 @@
 html {
   scroll-behavior: smooth;
 }
+
+.grid-card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-24);
+  border-radius: var(--spacing-24);
+  border: 1px solid rgb(0, 0, 0, 0.06);
+  gap: var(--spacing-16);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-16);
+}
+
+.card-body {
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.card-title {
+  font-size: var(--font-size-16);
+  font-weight: 700;
+}
+
+.card-subtitle {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-16);
+}
+
+.grid-column-2 {
+  grid-column: span 2;
+}
+
+.grid-column-3 {
+  grid-column: span 3;
+}
+
+.grid-column-4 {
+  grid-column: span 4;
+}
+
+.grid-column-5 {
+  grid-column: span 5;
+}
+
+.grid-row-2 {
+  grid-row: span 2;
+}
+
+.grid-row-3 {
+  grid-row: span 3;
+}
+
+.circle-arrow {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(0, 0, 0, 0.06);
+  border-radius: 50%;
+}
+

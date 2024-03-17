@@ -1,3 +1,6 @@
+:host {
+  max-width: 100%;
+}
 // Skills CSS
 .skill {
   display: flex;
@@ -17,10 +20,6 @@
 }
 
 // Scroller CSS
-.scroller {
-  max-width: 100vw;
-  border-bottom: 1px solid #C6C5C1;
-}
 
 .scroller[data-animated='true'] {
   overflow: hidden;
@@ -28,7 +27,7 @@
 }
 
 .scroller__inner {
-  padding-block: var(--spacing-64);
+  //padding-block: var(--spacing-64);
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing-64);

@@ -1,6 +1,6 @@
 // Mobile
 footer {
-  padding: var(--spacing-16);
+  padding: var(--spacing-16) 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,7 +24,7 @@ footer {
 
 @media (min-width: 768px) {
   footer {
-    padding: var(--spacing-32) var(--spacing-64);
+    padding: var(--spacing-32) 0;
     flex-direction: row;
     justify-content: space-between;
 

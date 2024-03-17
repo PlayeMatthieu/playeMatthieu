@@ -1,31 +1,40 @@
 // Mobile
 .container {
-
+  margin: auto;
+  padding: 0 var(--spacing-16);
 }
 // Tablet
 @media (min-width: 768px) {
   .container {
-
+    max-width: 700px;
   }
 }
 
 // Desktop
 @media (min-width: 1024px) {
   .container {
-
+    max-width: 950px;
   }
 }
 
 // Large Desktop
 @media (min-width: 1440px) {
   .container {
-
+    max-width: 1200px;
   }
 }
 
 // Extra Large Desktop
 @media (min-width: 1920px) {
   .container {
-
+    max-width: 1600px;
   }
 }
+
+// Extra Large Desktop
+@media (min-width: 2560px) {
+  .container {
+    max-width: 2000px;
+  }
+}
+
