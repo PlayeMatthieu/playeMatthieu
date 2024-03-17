@@ -14,21 +14,21 @@ import {NgIf} from "@angular/common";
 })
 export class AboutComponent{
 
-  public sliderCardWidth: number;
+  // public sliderCardWidth: number;
 
-  @ViewChild('sliderCard') sliderCard: ElementRef;
-  @HostListener('window:resize', ['$event'])
-  onResize() {
-    this.getCardWidth();
-  }
+  // @ViewChild('sliderCard') sliderCard: ElementRef;
+  // @HostListener('window:resize', ['$event'])
+  // onResize() {
+  //   this.getCardWidth();
+  // }
 
-  ngAfterViewInit(): void {
-    this.getCardWidth();
-    console.log('init')
-  }
-
-
-  private getCardWidth(): void {
-    this.sliderCardWidth = this.sliderCard.nativeElement.offsetWidth - 32;
-  }
+  // ngAfterViewInit(): void {
+  //   this.getCardWidth();
+  //   console.log('init')
+  // }
+  //
+  //
+  // private getCardWidth(): void {
+  //   this.sliderCardWidth = this.sliderCard.nativeElement.offsetWidth - 32;
+  // }
 }
