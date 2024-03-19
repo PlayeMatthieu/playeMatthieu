@@ -1,34 +1,44 @@
-import {Component, ElementRef, HostListener, ViewChild} from '@angular/core';
-import {SkillsSliderComponent} from "../skills-slider/skills-slider.component";
-import {NgIf} from "@angular/common";
+import {Component} from '@angular/core';
+import {NgForOf} from "@angular/common";
+
+interface skill {
+  title: string;
+  image: string;
+}
 
 @Component({
   selector: 'app-about',
   standalone: true,
   imports: [
-    SkillsSliderComponent,
-    NgIf
+    NgForOf
   ],
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss'
 })
 export class AboutComponent{
-
-  // public sliderCardWidth: number;
-
-  // @ViewChild('sliderCard') sliderCard: ElementRef;
-  // @HostListener('window:resize', ['$event'])
-  // onResize() {
-  //   this.getCardWidth();
-  // }
-
-  // ngAfterViewInit(): void {
-  //   this.getCardWidth();
-  //   console.log('init')
-  // }
-  //
-  //
-  // private getCardWidth(): void {
-  //   this.sliderCardWidth = this.sliderCard.nativeElement.offsetWidth - 32;
-  // }
+  public skills: skill[] = [{
+    title: 'angular',
+    image: 'assets/images/skills/Angular_logo.svg'
+  }, {
+    title: 'typescript',
+    image: 'assets/images/skills/Typescript_logo.svg'
+  }, {
+    title: 'Ionic',
+    image: 'assets/images/skills/Ionic_logo.svg'
+  }, {
+    title: 'Html',
+    image: 'assets/images/skills/Html_logo.svg'
+  }, {
+    title: 'Javascript',
+    image: 'assets/images/skills/Javascript_logo.svg'
+  }, {
+    title: 'Css',
+    image: 'assets/images/skills/Css_logo.svg'
+  }, {
+    title: 'Sass',
+    image: 'assets/images/skills/Sass_logo.svg'
+  }, {
+    title: 'aws',
+    image: 'assets/images/skills/Aws_logo.svg'
+  }]
 }

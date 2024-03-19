@@ -19,12 +19,16 @@
         freelancer, working as a self-employed professional.</p>
     </div>
   </div>
-<!--  <div class="grid-card" #sliderCard>-->
-<!--    <div class="card-header">-->
-<!--      <p class="card-title">Skills</p>-->
-<!--    </div>-->
-<!--    <div class="card-body">-->
-<!--&lt;!&ndash;      <app-skills-slider [maxWidth]="sliderCardWidth"></app-skills-slider>&ndash;&gt;-->
-<!--    </div>-->
-<!--  </div>-->
+  <div class="grid-card">
+    <div class="card-header">
+      <p class="card-title">Skills</p>
+    </div>
+    <div class="card-body">
+      <div class="skills">
+        <div class="skill" *ngFor="let skill of skills">
+          <img [src]="skill.image" [alt]="skill.title">
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
